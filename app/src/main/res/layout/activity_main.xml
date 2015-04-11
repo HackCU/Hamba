@@ -1,0 +1,76 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MyActivity"
+android:orientation="vertical"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#7B1FA2"
+    app:theme="@style/ToolbarTheme"
+    app:popupTheme="@style/Theme.AppCompat.Light" />
+
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/textGPA"
+                    android:layout_gravity="center|top"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/listClasses"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_below="@+id/textGPA"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <ImageButton
+                android:id="@+id/runCommand"
+                android:layout_width="@dimen/round_button_diameter"
+                android:layout_height="@dimen/round_button_diameter"
+                android:layout_gravity="end|bottom"
+                android:tint="@android:color/white"
+                android:src="@android:drawable/ic_input_add"
+                android:background="@drawable/oval"
+                tools:ignore="RtlCompat"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:elevation="3dp"
+                android:stateListAnimator="@anim/button_elevation"/>
+
+            </RelativeLayout>
+
+    </FrameLayout>
+    <ListView
+        android:id="@android:id/list"
+        android:background="@android:color/white"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"/>
+
+</android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>
+

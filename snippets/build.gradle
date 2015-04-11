@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+        }
+    }
+}
+
+dependencies {
+    compile files('../jars/quickblox-android-sdk-core-2.2.1.jar',
+            '../jars/quickblox-android-sdk-chat-2.2.1.jar',
+            '../jars/quickblox-android-sdk-content-2.2.1.jar',
+            '../jars/quickblox-android-sdk-customobjects-2.2.1.jar',
+            '../jars/quickblox-android-sdk-location-2.2.1.jar',
+            '../jars/quickblox-android-sdk-messages-2.2.1.jar',
+            '../jars/quickblox-android-sdk-ratings-2.2.1.jar',)
+
+//    // for development purpose
+//    //
+//    provided project(':quickblox-android-sdk-core')
+//    provided project(':quickblox-android-sdk-chat')
+//    provided project(':quickblox-android-sdk-ratings')
+//    provided project(':quickblox-android-sdk-content')
+//    provided project(':quickblox-android-sdk-messages')
+//    provided project(':quickblox-android-sdk-location')
+//    provided project(':quickblox-android-sdk-customobjects')
+}

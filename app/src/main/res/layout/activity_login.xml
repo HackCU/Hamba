@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.hamba.hambameet.LoginActivity"
+    android:background="#7B1FA2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Login"
+        android:id="@+id/textViewLogin"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:textSize="30dp"
+        android:layout_below="@+id/imageViewLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageViewLogo"
+        android:src="@drawable/ic_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/textViewLogin"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Username:"
+                    android:id="@+id/textView"
+                    android:textColor="@color/abc_primary_text_material_dark"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextUsername"
+                    android:layout_weight="1"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/abc_primary_text_material_dark"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Password:"
+                    android:id="@+id/textVIewPassword"
+                    android:textColor="@color/abc_primary_text_material_dark"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/editTextPassword"
+                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/abc_primary_text_material_dark"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textViewIncorrectPassword"
+                android:gravity="center"
+                android:textColor="@color/abc_primary_text_material_dark" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="Login"
+                android:textSize="20dp"
+                android:id="@+id/buttonLogin"
+                android:textColor="@color/abc_primary_text_material_dark"
+                android:background="@drawable/rounded_button"
+                android:layout_gravity="right"
+                android:layout_margin="15dp"
+                android:nestedScrollingEnabled="false"
+                android:onClick="onLoginClicked"
+                android:clickable="true" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:text="New Here? Register"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:id="@+id/buttonRegister"
+            android:textColor="@color/abc_primary_text_material_dark"
+            android:background="@drawable/rounded_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="80dp"
+            android:clickable="true"
+            android:onClick="onRegisterClicked" />
+
+    </LinearLayout>
+
+</RelativeLayout>

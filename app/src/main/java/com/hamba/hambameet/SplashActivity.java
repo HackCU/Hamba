@@ -1,57 +1,41 @@
 package com.hamba.hambameet;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
+import com.parse.Parse;
 
-import com.hamba.hambameet.utils.Constants;
-import com.hamba.hambameet.utils.DialogUtils;
-import com.quickblox.auth.QBAuth;
-import com.quickblox.auth.model.QBSession;
-import com.quickblox.core.QBEntityCallbackImpl;
-import com.quickblox.core.QBSettings;
-import com.quickblox.users.model.QBUser;
 
 import java.util.List;
 
 public class SplashActivity extends Activity {
 
-    private Context context;
-    private Resources resources;
-    private ProgressBar progressBar;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-
-        context = this;
-        resources = getResources();
-
-
-        // Initialize QuickBlox application with credentials.
-        //
-        QBSettings.getInstance().fastConfigInit(String.valueOf(Constants.APP_ID), Constants.AUTH_KEY, Constants.AUTH_SECRET);
-
-        // Create QuickBlox session
-        //
-        QBUser qbUser = new QBUser(Constants.USER_LOGIN, Constants.USER_PASSWORD);
-        QBAuth.createSession(qbUser, new QBEntityCallbackImpl<QBSession>() {
-            @Override
-            public void onSuccess(QBSession qbSession, Bundle bundle) {
-                //go to login page
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-            }
-
-            @Override
-            public void onError(List<String> errors) {
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-        });
+    private void startMapActivity() {
+        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
-}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Parse.initialize(this, "8Os7PVIih2cRDfomi10U64mY07t0sypgNu8RUxWw", "8MWpDTnDLnaVhIjnzhtWSmjv5vIgr2HEc9AIBqN0");
+        setContentView(R.layout.activity_splash);
+        startMapActivity();
+    }
+
+    public void onError(List<String> errors) {
+        AlertDialog.Builder exitDialog = new AlertDialog.Builder(SplashActivity.this);
+        exitDialog.setTitle("Unable to connect");
+        exitDialog.setMessage("Unable to connect to server \n Check internet connectivity and try again later");
+        exitDialog.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            System.exit(0);
+            }
+        });
+        exitDialog.create().show();
+    }
+        }
+

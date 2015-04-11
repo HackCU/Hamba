@@ -1,5 +1,6 @@
 package com.hamba.hambameet;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
@@ -9,30 +10,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class LoginActivity extends ActionBarActivity {
+import com.hamba.hambameet.utils.DialogUtils;
+import com.parse.LogInCallback;
+import com.parse.ParseUser;
 
+import java.util.List;
+
+
+public class LoginActivity extends ActionBarActivity {
+    private EditText loginEditText;
+    private EditText passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
-    public void onLoginClicked(View view){
-        EditText username = (EditText) findViewById(R.id.editTextUsername);
-        EditText password = (EditText) findViewById(R.id.editTextPassword);
-        TextView incorrectPassword = (TextView) findViewById(R.id.textViewIncorrectPassword);
-        String usernameString = username.getText().toString();
-        String passwordString = password.getText().toString();
-        incorrectPassword.setText("Incorrect Password");
-        /*Vibrator incorrectPasswordVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        incorrectPasswordVibrator.vibrate(300);*/
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-    }
+
     public void onRegisterClicked(View view){
+        finish();
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+    }
+    private void startMapActivity() {
+        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -40,6 +46,29 @@ public class LoginActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
+    }
+    public void onLoginClicked(View view) {
+        loginEditText = (EditText) findViewById(R.id.editTextUsername);
+        passwordEditText = (EditText) findViewById(R.id.editTextPassword);
+        final TextView incorrectPassword = (TextView) findViewById(R.id.textViewIncorrectPassword);
+
+        ParseUser.logInInBackground(loginEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
+            public void done(ParseUser user, com.parse.ParseException e) {
+                if (user != null) {
+                    //start sinch service
+                    //start next activity
+                    incorrectPassword.setText("");
+                    Toast.makeText(getApplicationContext(),"Success!", Toast.LENGTH_LONG).show();
+                    startMapActivity();
+                    finish();
+                } else {
+                    incorrectPassword.setText("Incorrect Password");
+                    DialogUtils.showLong(getApplicationContext(), "Do the needful");
+                }
+
+            }
+        });
+
     }
 
     @Override

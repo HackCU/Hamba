@@ -9,8 +9,6 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Toast;
 
-import com.quickblox.users.*;
-
 public class DialogUtils {
 
     private static Toast toast;

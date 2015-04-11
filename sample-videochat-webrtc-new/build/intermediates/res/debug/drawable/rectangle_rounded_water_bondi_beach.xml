@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <solid android:color="@color/water_bondi_beach"/>
-            <corners android:radius="5dp" />
-        </shape>
-    </item>
-</selector><!-- From: file:/C:/Users/Tolo/Desktop/quickblox-android-sdk-master/sample-videochat-webrtc-new/src/main/res/drawable/rectangle_rounded_water_bondi_beach.xml -->

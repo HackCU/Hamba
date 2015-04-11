@@ -1,5 +1,6 @@
 package com.hamba.hambameet;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.support.v4.view.GravityCompat;
@@ -58,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
         registerListClickCallback();
         calculateGPA();
         if(firstRun){
-            help("Welcome to Hamba");
+            help("Welcome to GPA Keeper!");
         }
     }
 
@@ -160,7 +161,7 @@ public class MainActivity extends ActionBarActivity {
         runCommand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createClassDialog();
+                startActivity(new Intent(getApplicationContext(), EventActivity.class));
             }
         });
     }

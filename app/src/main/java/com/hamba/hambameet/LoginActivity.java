@@ -1,5 +1,6 @@
 package com.hamba.hambameet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
@@ -9,57 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.hamba.hambameet.helper.DataHolder;
-import com.hamba.hambameet.utils.DialogUtils;
-import com.quickblox.core.QBEntityCallbackImpl;
-import com.quickblox.users.QBUsers;
-import com.quickblox.users.model.QBUser;
-import java.util.List;
+import android.widget.Toast;
+
 
 public class LoginActivity extends ActionBarActivity {
 
-    private EditText loginEditText;
-    private EditText passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
     public void onLoginClicked(View view){
-        loginEditText = (EditText) findViewById(R.id.editTextUsername);
-        passwordEditText = (EditText) findViewById(R.id.editTextPassword);
+        EditText username = (EditText) findViewById(R.id.editTextUsername);
+        EditText password = (EditText) findViewById(R.id.editTextPassword);
+        TextView incorrectPassword = (TextView) findViewById(R.id.textViewIncorrectPassword);
+        String usernameString = username.getText().toString();
+        String passwordString = password.getText().toString();
+        incorrectPassword.setText("Incorrect Password");
+        /*Vibrator incorrectPasswordVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        incorrectPasswordVibrator.vibrate(300);*/
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        switch (view.getId()) {
-            case R.id.buttonLogin:
-
-                // Sign in application with user
-                //
-                QBUser qbUser = new QBUser(loginEditText.getText().toString(), passwordEditText.getText().toString());
-                QBUsers.signIn(qbUser, new QBEntityCallbackImpl<QBUser>() {
-                    @Override
-                    public void onSuccess(QBUser qbUser, Bundle bundle) {
-
-
-                        setResult(RESULT_OK);
-
-                        DataHolder.getDataHolder().setSignInQbUser(qbUser);
-                        // password does not come, so if you want use it somewhere else, try something like this:
-                        DataHolder.getDataHolder().setSignInUserPassword(passwordEditText.getText().toString());
-                        finish();
-                    }
-
-                    @Override
-                    public void onError(List<String> errors) {
-                        DialogUtils.showLong(getApplicationContext(), errors.get(0));
-                        TextView incorrectPassword = (TextView) findViewById(R.id.textViewIncorrectPassword);
-                        incorrectPassword.setText("Incorrect Password");
-                        Vibrator incorrectPasswordVibrator = (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE);
-                        incorrectPasswordVibrator.vibrate(300);
-                    }
-                });
-
-                break;
-        }
     }
     public void onRegisterClicked(View view){
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));

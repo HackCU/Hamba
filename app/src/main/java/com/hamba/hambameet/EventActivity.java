@@ -6,15 +6,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class EventActivity extends FragmentActivity {
 
+public class EventActivity extends FragmentActivity{
+    private GoogleMap eventMap;
+    private LatLng eventLocation = new LatLng(40.0067, -105.2672);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        eventMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.eventMap)).getMap();
+        eventMap.getUiSettings().setZoomControlsEnabled(true);
+        eventMap.getUiSettings().setAllGesturesEnabled(false);
+        CameraUpdate location = CameraUpdateFactory.newLatLngZoom(eventLocation, 12);
+        eventMap.animateCamera(location);
+        eventMap.addMarker(new MarkerOptions().position(eventLocation).title("University of Colorado Boulder"));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
